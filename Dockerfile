@@ -44,7 +44,7 @@ COPY --chown=www:www ./src /var/www
 
 # Change current user to www
 USER www
-RUN chown -R www /var/www
+RUN chown -R $USER /var/www
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 CMD ["php-fpm"]
