@@ -41,10 +41,13 @@ COPY ./src /var/www
 
 # Copy existing application directory permissions
 COPY --chown=www:www ./src /var/www
-
+#
+RUN chown -R www:www /var/www
+RUN chmod 755 /var/www
+#
 # Change current user to www
 USER www
-RUN chown -R $USER /var/www
+#RUN chown -R $USER /var/www
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 CMD ["php-fpm"]
