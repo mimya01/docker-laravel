@@ -42,7 +42,7 @@ COPY ./src /var/www
 # Copy existing application directory permissions
 #COPY --chown=deployer_carpooling:deployer_carpooling ./src /var/www
 #
-RUN chown -R docker_carpooling:deployer_carpooling /var/www
+RUN chown -R docker_carpooling:docker_carpooling /var/www
 #RUN chmod 755 /var/www
 #
 # Change current user to docker_carpooling
