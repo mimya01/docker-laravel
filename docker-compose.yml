@@ -18,7 +18,7 @@ services:
       - ./src:/var/www
       - ./docker-build/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
-      - app-network
+      - carpooling-network
 
   #Nginx Service
   webserver:
@@ -33,7 +33,7 @@ services:
       - ./src:/var/www
       - ./docker-build/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
-      - app-network
+      - carpooling-network
 
   #MySQL Service
   db:
@@ -52,7 +52,7 @@ services:
       - dbdata:/var/lib/mysql/
       - ./docker-build/mysql/my.cnf:/etc/mysql/my.cnf
     networks:
-      - app-network
+      - carpooling-network
   redis:
     image: redis:latest
     container_name: redis
@@ -61,12 +61,12 @@ services:
    # ports:
    #   - "6379:6379"
     networks:
-      - app-network
+      - carpooling-network
     #volumes:
     #  - redis-data:/data
 #Docker Networks
 networks:
-  app-network:
+  carpooling-network:
     driver: bridge
 #Volumes
 volumes:
