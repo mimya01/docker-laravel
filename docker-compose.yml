@@ -2,16 +2,16 @@ version: '3'
 services:
 
   #PHP Service
-  app:
+  carpooling:
     build:
       context: .
       dockerfile: Dockerfile
     image: digitalocean.com/php
-    container_name: app
+    container_name: carpooling
     restart: unless-stopped
     tty: true
     environment:
-      SERVICE_NAME: app
+      SERVICE_NAME: carpooling
       SERVICE_TAGS: dev
     working_dir: /var/www
     volumes:
