@@ -33,8 +33,8 @@ RUN docker-php-ext-install gd
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Add user for laravel application
-RUN groupadd -g 1000 deployer_carpooling
-RUN useradd -u 1000 -ms /bin/bash -g deployer_carpooling deployer_carpooling
+RUN groupadd -g 1000 docker_carpooling
+RUN useradd -u 1000 -ms /bin/bash -g docker_carpooling docker_carpooling
 
 # Copy existing application directory contents
 COPY ./src /var/www
@@ -42,11 +42,11 @@ COPY ./src /var/www
 # Copy existing application directory permissions
 #COPY --chown=deployer_carpooling:deployer_carpooling ./src /var/www
 #
-RUN chown -R deployer_carpooling:deployer_carpooling /var/www
+RUN chown -R docker_carpooling:deployer_carpooling /var/www
 #RUN chmod 755 /var/www
 #
-# Change current user to deployer_carpooling
-USER deployer_carpooling
+# Change current user to docker_carpooling
+USER docker_carpooling
 #RUN chown -R $USER /var/www
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
