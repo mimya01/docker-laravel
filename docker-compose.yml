@@ -28,12 +28,23 @@ services:
     tty: true
     ports:
       - "80:80"
-      - "443:443"
+      #- "443:443"
     volumes:
       - ./src:/var/www
       - ./docker-build/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - carpooling-network
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      - web-root:/var/www/html
+    depends_on:
+      - webserver
+    command: certonly --webroot --webroot-path=/var/www/html --email sammy@example.com --agree-tos --no-eff-email --staging -d example.com  -d www.example.com 
 
   #MySQL Service
   db:
